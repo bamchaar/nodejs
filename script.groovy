@@ -1,9 +1,11 @@
 def buildImage() {
     echo 'Building Docker image'
     withCredentials([usernamePassword(credentialsId: 'tcdmvkey', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh 'docker build -t tcdmv/nodejs:nodejs-1.0 .'
-        sh "echo $PASS | docker login -u $USER --password-stdin"
-        sh 'docker push tcdmv/nodejs:nodejs-1.0'
+                  nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
+                    sh 'npm config ls'
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
     }
 }
 def buildJar() {
