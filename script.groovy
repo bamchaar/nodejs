@@ -1,7 +1,7 @@
 def buildImage() {
     echo 'Building Docker image'
     withCredentials([usernamePassword(credentialsId: 'tcdmvkey', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                  nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
+                  nodejs(nodeJSInstallationName: 'Node 19.8.1', configId: '<config-file-provider-id>') {
                     sh 'npm config ls'
                     sh 'npm install'
                     sh 'npm run build'
