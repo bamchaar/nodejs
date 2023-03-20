@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 19-alpine3.16 AS ui-build  
+FROM --platform=linux/amd64 node:16 AS ui-build  
 WORKDIR /usr/src/NODEJS
 COPY . /usr/src/NODEJS
 RUN cd /usr/src/NODEJS
