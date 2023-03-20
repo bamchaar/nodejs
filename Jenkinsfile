@@ -8,9 +8,7 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
-    tools{
-    maven 'mvn-3.9'
-    }
+
     parameters {
     	choice(name: 'version', choices: ['1.1.0', '1.2.0', '1.3.0','2.0.0'], description:'')
     	booleanParam(name: 'executeTest', defaultValue: true, description: '')
@@ -41,14 +39,6 @@ pipeline {
                 always {
                     echo 'Post Test stage'
                 }
-            }
-        }
-        stage('Build jar') {
-
-            steps {
-				script{
-				gv.buildJar()
-				}
             }
         }
         stage('Build image') {
